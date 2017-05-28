@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+
+  "name": "This is Dem test Extension",
+  "description": "This extension will be tested",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_popup": "html/popup.html",
+    "default_title": "Click here!"
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ],
+  "content_scripts": [{
+    "matches": [
+      "http://example.com/*"
+    ],
+    "js": ["js/content.js"],
+    "css": ["css/cont.css"],
+    "run_at": "document_end"
+  }],
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  }
+}
