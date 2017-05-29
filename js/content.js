@@ -15,12 +15,21 @@ function appendExtensionDiv() {
     reminderText.innerHTML = "This is reminder text from extension";
     extDiv.appendChild(reminderText);
 
+    var appendInput = document.createElement("input");
+    appendInput.id = "inputExt";
+    appendInput.placeholder = "Input some text";
+    extDiv.appendChild(appendInput);
+
     var appendButton = document.createElement("button");
-    appendButton.innerHTML = "Append text from bg";
+    appendButton.id = "appendBuuton";
+    appendButton.innerHTML = "Append text";
     appendButton.addEventListener("click", function () {
-        chrome.extension.sendMessage("closeElement", function (response) {
+        chrome.extension.sendMessage("appendText", function (response) {
             console.log(response);
-            reminderText.innerHTML += " and Here are Response " + response;
+            reminderText.innerText += "\n" + document.getElementById("inputExt").value;
+            reminderText.innerHTML += " and here are Response " + response;
+            document.getElementById("appendBuuton").style.visibility = "hidden";
+            document.getElementById("inputExt").style.visibility = "hidden";
         });
     });
     extDiv.appendChild(appendButton);
